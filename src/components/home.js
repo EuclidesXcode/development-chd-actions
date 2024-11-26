@@ -29,7 +29,7 @@ const FormComponent = () => {
         baseURL: env,
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': 'COr8UcK1ggPV5hG9bGam9dMq14A6Hvv8VVNHhZXg',
+          'x-api-key': env === 'https://m6fbbabmvi.execute-api.us-east-1.amazonaws.com/pp/public/users/v1/userTypes/GMF/sailpoint/users/' ? 'e2BwlxKPQUaTW2XuWOKF98E8FkfGLyGaaizu0Qev' : 'COr8UcK1ggPV5hG9bGam9dMq14A6Hvv8VVNHhZXg',
         },
         timeout: 30000,
       })
