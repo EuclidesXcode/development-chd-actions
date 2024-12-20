@@ -59,9 +59,12 @@ function Home() {
     <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
       <Tabs value={tabIndex} onChange={handleTabChange} centered sx={{
         bgcolor: '#fff',
-        borderBottom: '1px solid #e0e0e0',
         width: '100%',
-        maxWidth: 548,        
+        maxWidth: 548,
+        borderRadius: 10,
+        marginBottom: 3,
+        boxShadow: '15px 10px 10px rgb(226, 225, 225)',
+        border: '1px solidrgb(231, 229, 229)'
       }}>
         <Tab label="Editar usuário" />
         <Tab label="Aprovar proposta" />
@@ -70,7 +73,10 @@ function Home() {
         <Box
           component="form"
           onSubmit={handleSubmit}
-          sx={{ p: 3, maxWidth: 500, mx: "auto", bgcolor: "#fff", boxShadow: 3 }}
+          sx={{
+            p: 3, maxWidth: 500, mx: "auto", bgcolor: "#fff", borderRadius: 5,
+            boxShadow: '15px 10px 10px rgb(226, 225, 225)', border: '1px solidrgb(205, 205, 205)'
+          }}
         >
           <Typography variant="h5" color={"#c1c1c1"} gutterBottom>
             Edite seu perfil de usuário OKTA
@@ -176,7 +182,8 @@ function Home() {
         <Box
           component="form"
           onSubmit={handleSubmitProposal}
-          sx={{ p: 3, width: 500, mx: "auto", bgcolor: "#fff", boxShadow: 3 }}
+          sx={{ p: 3, width: 500, mx: "auto", bgcolor: "#fff", borderRadius: 5,
+            boxShadow: '15px 10px 10px rgb(226, 225, 225)', border: '1px solidrgb(205, 205, 205)' }}
         >
           <Typography variant="h5" color={"#c1c1c1"} gutterBottom>
             Edite o Status da sua Proposta
