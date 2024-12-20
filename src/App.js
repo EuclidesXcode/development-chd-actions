@@ -8,7 +8,7 @@ function App() {
         <FormComponent />
       </header>
       <div style={{marginTop: -50}}>
-        <p>CHD tools - versão: 1.0.2</p>
+        <p>versão: 1.0.2</p>
       </div>
     </div>
   );
