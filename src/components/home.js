@@ -82,7 +82,7 @@ function Home() {
               labelId="env-label"
               value={env}
               onChange={(e) => setEnv(e.target.value)}
-              label="Ambiente"
+              label="Selecione o Ambiente"
               required
             >
               <MenuItem value="https://1uc3pve92e.execute-api.us-east-2.amazonaws.com/dev/public/users/v1/userTypes/GMF/sailpoint/users/">DEV</MenuItem>
@@ -188,7 +188,7 @@ function Home() {
               labelId="env-label"
               value={env}
               onChange={(e) => setEnv(e.target.value)}
-              label="Ambiente"
+              label="Selecione o Ambiente"
               required
             >
               <MenuItem value="teste">DEV</MenuItem>
