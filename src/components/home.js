@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Box, Tabs, Tab, Typography, FormControl, InputLabel, Select, MenuItem, TextField, Button, Modal, Stack } from '@mui/material';
+import { Box, Tabs, Tab, Typography, FormControl, InputLabel, Select, MenuItem, TextField, Button, Modal, Stack, Icon } from '@mui/material';
 import axios from 'axios';
+import SendIcon from '@mui/icons-material/Send';
 
 function Home() {
   const [tabIndex, setTabIndex] = useState(0);
@@ -149,7 +150,7 @@ function Home() {
             </Select>
           </FormControl>
 
-          <Button type="submit" variant="contained" color="primary" fullWidth>
+          <Button type="submit" variant="contained" size='large' color="primary" endIcon={<SendIcon />} fullWidth sx={{color: '#fff'}}>
             Enviar
           </Button>
 
@@ -234,7 +235,7 @@ function Home() {
             </Select>
           </FormControl>
 
-          <Button type="submit" variant="contained" color="primary" fullWidth>
+          <Button type="submit" variant="contained" color="primary" fullWidth endIcon={<SendIcon />} size='large' sx={{color: '#fff'}}>
             Enviar
           </Button>
 
