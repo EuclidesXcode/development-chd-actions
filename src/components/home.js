@@ -183,8 +183,10 @@ function Home() {
         <Box
           component="form"
           onSubmit={handleSubmitProposal}
-          sx={{ p: 3, width: 500, mx: "auto", bgcolor: "#fff", borderRadius: 5,
-            boxShadow: '15px 10px 10px rgb(226, 225, 225)', border: '1px solidrgb(205, 205, 205)' }}
+          sx={{
+            p: 3, width: 500, mx: "auto", bgcolor: "#fff", borderRadius: 5,
+            boxShadow: '15px 10px 10px rgb(226, 225, 225)', border: '1px solidrgb(205, 205, 205)'
+          }}
         >
           <Typography variant="h5" color={"#c1c1c1"} gutterBottom>
             Edite o Status da sua Proposta
