@@ -13,6 +13,7 @@ function Home() {
   const [proposalStatus, setProposalStatus] = useState("");
   const [proposal, setProposal] = useState("");
   const [status, setStatus] = useState("");
+  const [proposalEnv, setProposalEnv] = useState("dev");
 
   const handleTabChange = (event, newValue) => {
     setTabIndex(newValue);
@@ -193,15 +194,15 @@ function Home() {
             <InputLabel id="env-label">Selecione o Ambiente</InputLabel>
             <Select
               labelId="env-label"
-              value={env}
-              onChange={(e) => setEnv(e.target.value)}
+              value={proposalEnv}
+              onChange={(e) => setProposalEnv(e.target.value)}
               label="Selecione o Ambiente"
               required
             >
-              <MenuItem value="teste">DEV</MenuItem>
-              <MenuItem value="teste">PP</MenuItem>
-              <MenuItem value="teste">DEV 2</MenuItem>
-              <MenuItem value="teste">AUTOMAÇÃO</MenuItem>
+              <MenuItem value="dev">DEV</MenuItem>
+              <MenuItem value="pp">PP</MenuItem>
+              <MenuItem value="dev2">DEV 2</MenuItem>
+              <MenuItem value="ta">AUTOMAÇÃO</MenuItem>
             </Select>
           </FormControl>
 
@@ -224,8 +225,10 @@ function Home() {
               label="Status"
               required
             >
-              <MenuItem value="approved">APPROVED</MenuItem>
-              <MenuItem value="denied">DENIED</MenuItem>
+              <MenuItem value="SUBMITTED">SUBMITTED</MenuItem>
+              <MenuItem value="APPROVED">APPROVED</MenuItem>
+              <MenuItem value="QUALIFIED">QUALIFIED</MenuItem>
+              <MenuItem value="REJECTED">REJECTED</MenuItem>
             </Select>
           </FormControl>
 
