@@ -15,6 +15,7 @@ function Home() {
   const [proposal, setProposal] = useState("");
   const [status, setStatus] = useState("");
   const [proposalEnv, setProposalEnv] = useState("dev");
+  const [message, setMessage] = useState("");
 
   const handleTabChange = (event, newValue) => {
     setTabIndex(newValue);
@@ -44,13 +45,18 @@ function Home() {
       );
       console.log("SUCESSO: ", response?.data);
       setOpen(true);
-    } catch (error) {
-      console.error("Error:", error);
+      setMessage("Usuário atualizado com sucesso!")
+    } catch (err) {
+      console.error("Error:", err);
+      setMessage('Erro ao atualizar usuário!')
+      setOpen(true);
     }
   };
 
   const handleSubmitProposal = async (event) => {
-    setStatus("Em desenvolvimento!")
+    event.preventDefault();
+    setMessage("Em desenvolvimento!")
+    setOpen(true);
   }
 
   const handleModalClose = () => {
@@ -163,16 +169,16 @@ function Home() {
                 transform: "translate(-50%, -50%)",
                 width: 400,
                 bgcolor: "#fff",
-                border: "2px solid #000",
                 boxShadow: 24,
                 p: 4,
+                borderRadius: 5
               }}
             >
               <Typography variant="h6" gutterBottom>
-                Sucesso
+                {message}
               </Typography>
               <Stack direction="row" spacing={2} justifyContent="center">
-                <Button variant="contained" onClick={handleModalClose}>
+                <Button variant="contained" onClick={handleModalClose} sx={{color: '#fff'}}>
                   Ok
                 </Button>
               </Stack>
@@ -248,16 +254,16 @@ function Home() {
                 transform: "translate(-50%, -50%)",
                 width: 400,
                 bgcolor: "#fff",
-                border: "2px solid #000",
                 boxShadow: 24,
                 p: 4,
+                borderRadius: 5
               }}
             >
               <Typography variant="h6" gutterBottom>
-                {status}
+                {message}
               </Typography>
               <Stack direction="row" spacing={2} justifyContent="center">
-                <Button variant="contained" onClick={handleModalClose}>
+                <Button variant="contained" onClick={handleModalClose} sx={{color: '#fff'}}>
                   Ok
                 </Button>
               </Stack>
