@@ -8,6 +8,9 @@ const theme = createTheme({
     secondary: {
       main: '#daa520', // Cor secundária
     },
+    danger: {
+      main: '#f00', // Cor de erro
+    },
   },
 });
 

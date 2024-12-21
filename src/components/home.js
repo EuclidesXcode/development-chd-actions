@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Box, Tabs, Tab, Typography, FormControl, InputLabel, Select, MenuItem, TextField, Button, Modal, Stack, Icon } from '@mui/material';
 import axios from 'axios';
 import SendIcon from '@mui/icons-material/Send';
+import BackspaceIcon from '@mui/icons-material/Backspace';
 
 function Home() {
   const [tabIndex, setTabIndex] = useState(0);
@@ -52,6 +53,21 @@ function Home() {
       setOpen(true);
     }
   };
+
+  const handleClearProfilePayload = () => {
+    setUserName("");
+    setName("");
+    setEmail("");
+    setProfile("admin-internal");
+    setEnv("https://1uc3pve92e.execute-api.us-east-2.amazonaws.com/dev/public/users/v1/userTypes/GMF/sailpoint/users/");
+  }
+
+  const handleClearProposalPayload = () => {
+    setProposalStatus("");
+    setProposal("");
+    setStatus("");
+    setProposalEnv("dev");
+  }
 
   const handleSubmitProposal = async (event) => {
     event.preventDefault();
@@ -155,124 +171,133 @@ function Home() {
               <MenuItem value="service-desk">service-desk</MenuItem>
             </Select>
           </FormControl>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', gap: 2 }}>
+              <Button onClick={() => handleClearProfilePayload()} variant="contained" size='large' color="danger" endIcon={<BackspaceIcon />} fullWidth sx={{ color: '#fff' }}>
+                Limpar
+              </Button>
+              <Button type="submit" variant="contained" size='large' color="primary" endIcon={<SendIcon />} fullWidth sx={{ color: '#fff' }}>
+                Enviar
+              </Button>
+            </Box>
 
-          <Button type="submit" variant="contained" size='large' color="primary" endIcon={<SendIcon />} fullWidth sx={{color: '#fff'}}>
-            Enviar
-          </Button>
-
-          <Modal open={open} onClose={handleModalClose}>
+            <Modal open={open} onClose={handleModalClose}>
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: 400,
+                  bgcolor: "#fff",
+                  boxShadow: 24,
+                  p: 4,
+                  borderRadius: 5
+                }}
+              >
+                <Typography variant="h6" gutterBottom>
+                  {message}
+                </Typography>
+                <Stack direction="row" spacing={2} justifyContent="center">
+                  <Button variant="contained" onClick={handleModalClose} sx={{ color: '#fff' }}>
+                    Ok
+                  </Button>
+                </Stack>
+              </Box>
+            </Modal>
+          </Box>
+      )}
+          {tabIndex === 1 && (
             <Box
+              component="form"
+              onSubmit={handleSubmitProposal}
               sx={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: 400,
-                bgcolor: "#fff",
-                boxShadow: 24,
-                p: 4,
-                borderRadius: 5
+                p: 3, width: 500, mx: "auto", bgcolor: "#fff", borderRadius: 5,
+                boxShadow: '15px 10px 10px rgb(226, 225, 225)', border: '1px solidrgb(205, 205, 205)'
               }}
             >
-              <Typography variant="h6" gutterBottom>
-                {message}
+              <Typography variant="h5" color={"#c1c1c1"} gutterBottom>
+                Edite o Status da sua Proposta
               </Typography>
-              <Stack direction="row" spacing={2} justifyContent="center">
-                <Button variant="contained" onClick={handleModalClose} sx={{color: '#fff'}}>
-                  Ok
-                </Button>
-              </Stack>
+
+              <FormControl fullWidth margin="normal">
+                <InputLabel id="env-label">Selecione o Ambiente</InputLabel>
+                <Select
+                  labelId="env-label"
+                  value={proposalEnv}
+                  onChange={(e) => setProposalEnv(e.target.value)}
+                  label="Selecione o Ambiente"
+                  required
+                >
+                  <MenuItem value="dev">DEV</MenuItem>
+                  <MenuItem value="pp">PP</MenuItem>
+                  <MenuItem value="dev2">DEV 2</MenuItem>
+                  <MenuItem value="ta">AUTOMAÇÃO</MenuItem>
+                </Select>
+              </FormControl>
+
+              <TextField
+                label="Número da Proposta"
+                type="number"
+                fullWidth
+                margin="normal"
+                value={proposal}
+                onChange={(e) => setProposal(e.target.value)}
+                required
+              />
+
+              <FormControl fullWidth margin="normal">
+                <InputLabel id="status-label">Status</InputLabel>
+                <Select
+                  labelId="status-label"
+                  value={proposalStatus}
+                  onChange={(e) => setProposalStatus(e.target.value)}
+                  label="Status"
+                  required
+                >
+                  <MenuItem value="SUBMITTED">SUBMITTED</MenuItem>
+                  <MenuItem value="APPROVED">APPROVED</MenuItem>
+                  <MenuItem value="QUALIFIED">QUALIFIED</MenuItem>
+                  <MenuItem value="REJECTED">REJECTED</MenuItem>
+                </Select>
+              </FormControl>
+
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', gap: 2 }}>
+              <Button onClick={() => handleClearProposalPayload()} variant="contained" size='large' color="danger" endIcon={<BackspaceIcon />} fullWidth sx={{ color: '#fff' }}>
+                Limpar
+              </Button>
+              <Button type="submit" variant="contained" color="primary" fullWidth endIcon={<SendIcon />} size='large' sx={{ color: '#fff' }}>
+                Enviar
+              </Button>
+              </Box>
+
+              <Modal open={open} onClose={handleModalClose}>
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    width: 400,
+                    bgcolor: "#fff",
+                    boxShadow: 24,
+                    p: 4,
+                    borderRadius: 5
+                  }}
+                >
+                  <Typography variant="h6" gutterBottom>
+                    {message}
+                  </Typography>
+                  <Stack direction="row" spacing={2} justifyContent="center">
+                    <Button variant="contained" onClick={handleModalClose} sx={{ color: '#fff' }}>
+                      Ok
+                    </Button>
+                  </Stack>
+                </Box>
+              </Modal>
             </Box>
-          </Modal>
+          )}
         </Box>
-      )}
-      {tabIndex === 1 && (
-        <Box
-          component="form"
-          onSubmit={handleSubmitProposal}
-          sx={{
-            p: 3, width: 500, mx: "auto", bgcolor: "#fff", borderRadius: 5,
-            boxShadow: '15px 10px 10px rgb(226, 225, 225)', border: '1px solidrgb(205, 205, 205)'
-          }}
-        >
-          <Typography variant="h5" color={"#c1c1c1"} gutterBottom>
-            Edite o Status da sua Proposta
-          </Typography>
-
-          <FormControl fullWidth margin="normal">
-            <InputLabel id="env-label">Selecione o Ambiente</InputLabel>
-            <Select
-              labelId="env-label"
-              value={proposalEnv}
-              onChange={(e) => setProposalEnv(e.target.value)}
-              label="Selecione o Ambiente"
-              required
-            >
-              <MenuItem value="dev">DEV</MenuItem>
-              <MenuItem value="pp">PP</MenuItem>
-              <MenuItem value="dev2">DEV 2</MenuItem>
-              <MenuItem value="ta">AUTOMAÇÃO</MenuItem>
-            </Select>
-          </FormControl>
-
-          <TextField
-            label="Número da Proposta"
-            type="number"
-            fullWidth
-            margin="normal"
-            value={proposal}
-            onChange={(e) => setProposal(e.target.value)}
-            required
-          />
-
-          <FormControl fullWidth margin="normal">
-            <InputLabel id="status-label">Status</InputLabel>
-            <Select
-              labelId="status-label"
-              value={proposalStatus}
-              onChange={(e) => setProposalStatus(e.target.value)}
-              label="Status"
-              required
-            >
-              <MenuItem value="SUBMITTED">SUBMITTED</MenuItem>
-              <MenuItem value="APPROVED">APPROVED</MenuItem>
-              <MenuItem value="QUALIFIED">QUALIFIED</MenuItem>
-              <MenuItem value="REJECTED">REJECTED</MenuItem>
-            </Select>
-          </FormControl>
-
-          <Button type="submit" variant="contained" color="primary" fullWidth endIcon={<SendIcon />} size='large' sx={{color: '#fff'}}>
-            Enviar
-          </Button>
-
-          <Modal open={open} onClose={handleModalClose}>
-            <Box
-              sx={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: 400,
-                bgcolor: "#fff",
-                boxShadow: 24,
-                p: 4,
-                borderRadius: 5
-              }}
-            >
-              <Typography variant="h6" gutterBottom>
-                {message}
-              </Typography>
-              <Stack direction="row" spacing={2} justifyContent="center">
-                <Button variant="contained" onClick={handleModalClose} sx={{color: '#fff'}}>
-                  Ok
-                </Button>
-              </Stack>
-            </Box>
-          </Modal>
-        </Box>
-      )}
-    </Box>
-  );
+      );
 }
 
-export default Home;
+      export default Home;

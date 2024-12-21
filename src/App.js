@@ -8,7 +8,7 @@ function App() {
         <FormComponent />
       </header>
       <div style={{marginTop: -50}}>
-        <p>versão: 1.0.3</p>
+        <p>versão: 1.0.4</p>
       </div>
     </div>
   );
